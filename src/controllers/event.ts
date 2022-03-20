@@ -1,5 +1,7 @@
 import {
     Event,
+    EventComment,
+    EventGuest,
     Location,
     User
 } from '../models/export'
@@ -24,6 +26,13 @@ const getEvents = async (req: express.Request, res: express.Response) => {
             as: 'creator',
         }, {
             model: Location,
+        }, {
+            model: EventComment,
+            as: 'comments',
+            include: [User],
+            attributes: {
+                exclude: ['user_id', 'event_id']
+            }
         }],
     })
 
@@ -50,8 +59,16 @@ const getEvent = async (req: express.Request, res: express.Response) => {
             as: 'creator'
         }, {
             model: Location
+        }, {
+            model: EventComment,
+            as: 'comments',
+            include: [User],
+            attributes: {
+                exclude: ['user_id', 'event_id']
+            }
         }],
     })
+
     return res.status(200).json(event);
 }
 
@@ -74,35 +91,55 @@ const createEvent = async (req: express.Request, res: express.Response) => {
         await event.save()
         res.status(200).json(event)
     } catch(error) {
-        res.status(500).json("There was a very very big problem and the event couldn't be created")
+        res.status(500).json({
+            error,
+            message: "There was a very very big problem and the event couldn't be created"
+        })
     }
 }
 
 const createComment = async (req: express.Request, res: express.Response) => {
     const {
-       creator_id,
-       location_id,
-       type,
-       title,
-       timestamp
-    } = JSON.parse(req.body.data)
-    const event = Event.build({
-       title: title,
-       creator_id: creator_id,
-       location_id: location_id,
-       type: type,
-       timestamp: timestamp
+        event_id,
+        user_id,
+        message,
+        timestamp
+    } = req.body
+    const eventComment = EventComment.build({
+        event_id: event_id,
+        user_id: parseInt(user_id),
+        message,
+        timestamp: timestamp
     });
     try {
-        await event.save()
-        res.status(200).json(event)
+        await eventComment.save()
+        res.status(200).json(eventComment)
     } catch(error) {
-        res.status(500).json("There was a very very big problem and the event couldn't be created")
+        res.status(500).json({
+            error,
+            message: "There was a very very big problem and the comment couldn't be created"
+        })
     }
 }
 
 const registerToEvent = async (req: express.Request, res: express.Response) => {
-
+    const {
+        event_id,
+        guest_id,
+    } = req.body
+    const eventGuest = EventGuest.build({
+        event_id: event_id,
+        guest_id: parseInt(guest_id),
+    });
+    try {
+        await eventGuest.save()
+        res.status(200).json(eventGuest)
+    } catch(error) {
+        res.status(500).json({
+            error,
+            message: "There was a very very big problem and the user could not register"
+        })
+    }
 }
 
 export {

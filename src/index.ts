@@ -17,7 +17,7 @@ const start = async (): Promise<void> => {
   try {
     await sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
     await sequelize.sync({
-      force: true
+      alter: true
     })
     app.use(cors())
     app.use('/api/events', eventRouter)

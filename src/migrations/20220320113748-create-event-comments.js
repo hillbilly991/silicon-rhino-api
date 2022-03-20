@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-     await queryInterface.createTable('event_guest_comments', {
+     await queryInterface.createTable('event_comments', {
       id: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
@@ -15,11 +15,19 @@ module.exports = {
       },
       message: {
         type: Sequelize.STRING,
+        allowNull: false
       },
-      event_guest_id: {
+      user_id: {
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
-          model: 'event_guests',
+          model: 'users',
+          key: 'id'
+        }
+      },
+      event_id: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: 'events',
           key: 'id'
         }
       },
@@ -37,6 +45,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('event_guest_comments');
+    await queryInterface.dropTable('event_comments');
   }
 };

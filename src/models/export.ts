@@ -1,12 +1,12 @@
 import Event from './Event'
-import EventGuestComment from './EventGuestComment'
+import EventComment from './EventComment'
 import EventGuest from './EventGuest'
 import Location from './Location'
 import User from './User'
 
 export {
     Event,
-    EventGuestComment,
+    EventComment,
     EventGuest,
     Location,
     User

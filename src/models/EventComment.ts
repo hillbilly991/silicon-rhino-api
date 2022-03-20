@@ -1,17 +1,17 @@
 import { DataTypes, Model } from 'sequelize'
 import sequelize from '../config/sequelize'
-import EventGuest from './EventGuest'
 import User from './User'
+import Event from './Event'
 
-class EventGuestComment extends Model {
+class EventComment extends Model {
     declare id: number
     declare timestamp: string
     declare message: string
-    declare commenter_id: number
     declare event_id: number
+    declare commenter_id: number
 }
 
-EventGuestComment.init({
+EventComment.init({
     id: {
         type: DataTypes.INTEGER.UNSIGNED,
         autoIncrement: true,
@@ -27,11 +27,18 @@ EventGuestComment.init({
     },
 }, {
     sequelize,
-    modelName: 'event_guest_comment',
+    modelName: 'event_comment',
     timestamps: true,
     underscored: true
 })
 
-EventGuestComment.belongsTo(EventGuest)
+Event.hasMany(EventComment, {
+    as: 'comments',
+    foreignKey: 'event_id'
+})
 
-export default EventGuestComment
+EventComment.belongsTo(User, {
+    foreignKey: 'user_id'
+})
+
+export default EventComment

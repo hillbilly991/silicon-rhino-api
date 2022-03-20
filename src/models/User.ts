@@ -1,5 +1,7 @@
 import { DataTypes, Model } from 'sequelize'
 import sequelize from '../config/sequelize'
+import EventComment from './EventComment'
+import Event from './Event'
 class User extends Model {
   declare id: number
   declare name: string

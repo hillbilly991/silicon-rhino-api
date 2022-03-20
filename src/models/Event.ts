@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize'
 import sequelize from '../config/sequelize'
 import User from './User';
 import Location from './Location'
+import EventComment from './EventComment'
 
 class Event extends Model {
   declare id: number
@@ -33,7 +34,7 @@ Event.init({
     },
 }, {
     sequelize,
-    modelName: 'events',
+    modelName: 'event',
     underscored: true,
 })
 
