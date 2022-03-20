@@ -56,25 +56,49 @@ const getEvent = async (req: express.Request, res: express.Response) => {
 }
 
 const createEvent = async (req: express.Request, res: express.Response) => {
-   const {
+    const {
+       creator_id,
+       location_id,
+       type,
+       title,
+       time
+    } = req.body
+    const event = Event.build({
+       title: title,
+       creator_id: creator_id,
+       location_id: location_id,
+       type: type,
+       time: time
+    });
+    try {
+        await event.save()
+        res.status(200).json(event)
+    } catch(error) {
+        res.status(500).json("There was a very very big problem and the event couldn't be created")
+    }
+}
+
+const createComment = async (req: express.Request, res: express.Response) => {
+    const {
        creator_id,
        location_id,
        type,
        title,
        timestamp
-   } = JSON.parse(req.body.data)
-   const event = Event.build({
+    } = JSON.parse(req.body.data)
+    const event = Event.build({
        title: title,
        creator_id: creator_id,
        location_id: location_id,
        type: type,
        timestamp: timestamp
     });
-
-}
-
-const createComment = async (req: express.Request, res: express.Response) => {
-
+    try {
+        await event.save()
+        res.status(200).json(event)
+    } catch(error) {
+        res.status(500).json("There was a very very big problem and the event couldn't be created")
+    }
 }
 
 const registerToEvent = async (req: express.Request, res: express.Response) => {
