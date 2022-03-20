@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/lodash": "^4.14.179",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "fakergem": "^2.1.0",

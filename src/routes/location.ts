@@ -1,8 +1,8 @@
 import { Router } from 'express';
+import { getLocations } from '../controllers/location'
 const locationRouter = Router();
 
-locationRouter.get('/', (req, res) => {
-});
+locationRouter.get('/', getLocations);
 
 
 export { locationRouter };

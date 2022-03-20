@@ -28,6 +28,8 @@ EventGuestComment.init({
 }, {
     sequelize,
     modelName: 'event_guest_comment',
+    timestamps: true,
+    underscored: true
 })
 
 EventGuestComment.belongsTo(EventGuest)

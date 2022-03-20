@@ -1,4 +1,4 @@
-import { DataTypes, HasMany, Model } from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import sequelize from '../config/sequelize'
 import User from './User';
 import Location from './Location'
@@ -33,7 +33,8 @@ Event.init({
     },
 }, {
     sequelize,
-    modelName: 'event',
+    modelName: 'events',
+    underscored: true,
 })
 
 Event.belongsTo(User, {

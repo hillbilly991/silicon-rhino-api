@@ -1,8 +1,7 @@
 import { Router } from 'express';
+import { getUsers } from '../controllers/user'
 const userRouter = Router();
 
-userRouter.get('/', (req, res) => {
-});
-
+userRouter.get('/', getUsers)
 
 export { userRouter };

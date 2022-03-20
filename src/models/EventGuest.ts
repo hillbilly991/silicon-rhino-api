@@ -17,7 +17,8 @@ EventGuest.init({
     },
 }, {
     sequelize,
-    modelName: 'event_guest'
+    modelName: 'event_guest',
+     underscored: true
 })
 
 User.belongsToMany(Event, {

@@ -29,6 +29,8 @@ Location.init({
 }, {
     sequelize,
     modelName: 'location',
+    timestamps: true,
+    underscored: true
 })
 
 export default Location

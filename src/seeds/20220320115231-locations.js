@@ -4,32 +4,32 @@ module.exports = {
   async up (queryInterface, Sequelize) {
    const locations =  [{
         name: 'Be at One',
-        longitude: 51.5202,
-        latitude: 0.1004,
+        longitude: 0.1004,
+        latitude: 51.5204,
         created_at: new Date(),
         updated_at: new Date(),
     }, {
         name: 'The Conductor',
-        longitude: 51.5164,
-        latitude: 0.1036,
+        longitude: 0.1036,
+        latitude: 51.5164,
         created_at: new Date(),
         updated_at: new Date(),
     }, {
         name: 'Bounce',
-        longitude: 51.5180,
-        latitude: 0.1083,
+        longitude: 0.1083,
+        latitude: 51.5180,
         created_at: new Date(),
         updated_at: new Date(),
     }, {
         name: 'The Fence',
-        longitude: 51.5201,
-        latitude: 0.1036,
+        longitude: 0.1036,
+        latitude: 51.5201,
         created_at: new Date(),
         updated_at: new Date(),
     }, {
         name: 'Smithfields',
-        longitude: 51.5194,
-        latitude: 0.1014,
+        longitude: 0.1014,
+        latitude: 51.5194,
         created_at: new Date(),
         updated_at: new Date(),
     }]

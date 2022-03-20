@@ -1,21 +1,23 @@
 import { Router } from 'express';
+import {
+    getEvents,
+    getEvent,
+    createEvent,
+    createComment,
+    registerToEvent
+} from '../controllers/event'
+
 const eventRouter = Router();
 
-eventRouter.get('/', (req, res) => {
-});
+eventRouter.get('/', getEvents);
 
-eventRouter.get('/:id', (req, res) => {
+eventRouter.get('/:id', getEvent);
 
-});
+eventRouter.post('/', createEvent);
 
-eventRouter.post('/', (req, res) => {
-});
+eventRouter.post('/comments', createComment);
 
-eventRouter.post('/comments', (req, res) => {
-});
-
-eventRouter.post('/register', (req, res) => {
-});
+eventRouter.post('/register', registerToEvent);
 
 
 export { eventRouter };

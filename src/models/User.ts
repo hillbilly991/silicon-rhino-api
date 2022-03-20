@@ -16,7 +16,7 @@ User.init({
     type: DataTypes.STRING,
     allowNull: false
   },
-  avatarUrl: {
+  avatar_url: {
     type: DataTypes.STRING,
     allowNull: false,
     defaultValue: 'https://i0.wp.com/eikongroup.co.uk/wp-content/uploads/2017/04/Blank-avatar.png?ssl=1'
@@ -24,7 +24,9 @@ User.init({
 },
 {
   sequelize,
-  modelName: 'user'
+  modelName: 'user',
+  timestamps: true,
+  underscored: true
 })
 
 export default User
