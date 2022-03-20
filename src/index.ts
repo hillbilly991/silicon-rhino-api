@@ -6,7 +6,11 @@ import {
   locationRouter,
   userRouter
 } from './routes'
+import {
+  consumeDrinksApi
+} from './services/consumeDrinksApi'
 const cors = require('cors');
+const schedule = require('node-schedule')
 const app: Application = express()
 const port = process.env.SERVER_PORT || '8080'
 
@@ -19,6 +23,9 @@ const start = async (): Promise<void> => {
     await sequelize.sync({
       alter: true
     })
+    schedule.scheduleJob('0 0 * * *', async () => {
+      await consumeDrinksApi()
+    });
     app.use(cors())
     app.use('/api/events', eventRouter)
     app.use('/api/locations', locationRouter)
